@@ -1,0 +1,7 @@
+var searchData=
+[
+  ['r01_5ffunctional',['R01_FUNCTIONAL',['../group___r01___f_u_n_c_t_i_o_n_a_l.html',1,'']]],
+  ['r02_5fnon_5ffunctional',['R02_NON_FUNCTIONAL',['../group___r02___n_o_n___f_u_n_c_t_i_o_n_a_l.html',1,'']]],
+  ['rf_5f0001_5fstl_5finterface',['RF_0001_STL_INTERFACE',['../class_d_o_c_1_1_s_p_e_c_1_1_s02___s_r_s_1_1_r01___f_u_n_c_t_i_o_n_a_l_1_1_r_f__0001___s_t_l___i_n_t_e_r_f_a_c_e.html',1,'DOC::SPEC::S02_SRS::R01_FUNCTIONAL']]],
+  ['rnf_5f0001_5fbest_5fperf_5f1000_5fitems',['RNF_0001_BEST_PERF_1000_ITEMS',['../class_d_o_c_1_1_s_p_e_c_1_1_s02___s_r_s_1_1_r02___n_o_n___f_u_n_c_t_i_o_n_a_l_1_1_r_n_f__0001___3879f83d6720283e0039b7d65d1a2902.html',1,'DOC::SPEC::S02_SRS::R02_NON_FUNCTIONAL']]]
+];
