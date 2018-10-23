@@ -1,4 +1,0 @@
-<map id="sn_list_empty_clear_test" name="sn_list_empty_clear_test">
-<area shape="rect" id="node2" href="$classsn__std_1_1sn__list.html" title="{sn_std::sn_list\&lt; int \&gt;\n|# m_capacity\l# m_vecsize\l# m_size\l# m_p_head\l# m_p_tail\l# m_p_vec\l|+ sn_list()\l+ ~sn_list()\l+ begin()\l+ end()\l+ cbegin()\l+ cend()\l+ size()\l+ capacity()\l+ empty()\l+ full()\land 9 more...\l}" alt="" coords="26,365,171,663"/>
-<area shape="rect" id="node3" href="$classsn__std_1_1sn__list.html" title="{sn_std::sn_list\&lt; T \&gt;\n|# m_capacity\l# m_vecsize\l# m_size\l# m_p_head\l# m_p_tail\l# m_p_vec\l|+ sn_list()\l+ ~sn_list()\l+ begin()\l+ end()\l+ cbegin()\l+ cend()\l+ size()\l+ capacity()\l+ empty()\l+ full()\land 9 more...\l}" alt="" coords="29,5,168,303"/>
-</map>

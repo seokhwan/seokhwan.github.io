@@ -1,3 +1,0 @@
-<map id="sn_std::tr1::sn_map_deq&lt; key_t, val_t &gt;" name="sn_std::tr1::sn_map_deq&lt; key_t, val_t &gt;">
-<area shape="rect" id="node2" href="$classsn__std_1_1sn__deque.html" title="{sn_std::sn_deque\&lt; T \&gt;\n|# m_tail\l# m_capacity\l# m_head\l# m_size\l# m_index_max\l# m_p_arr\l# m_is_allocated\l|+ sn_deque()\l+ ~sn_deque()\l+ begin()\l+ end()\l+ cbegin()\l+ cend()\l+ size()\l+ capacity()\l+ empty()\l+ full()\land 13 more...\l# _init()\l# _increment_size()\l}" alt="" coords="5,5,161,347"/>
-</map>
