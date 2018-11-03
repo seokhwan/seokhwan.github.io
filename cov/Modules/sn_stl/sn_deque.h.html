@@ -234,24 +234,18 @@ namespace sn_std
 		// element access
 		////////////////////////////////////////
 		T&amp; front()
-<span style = "background-color:#dfd">		{
-			if (m_size &lt; 1U)</span>
-			{
-<span style = "background-color:#fdd">				tr1::sn_exception::handle(DEQUE_EXCEPTION_FRONT_NO_ELEM, "sn_deque::front()");</span>
-			}
+<span style = "background-color:#dfd">		{</span>
+            SN_EXCEPTION_HANDLE((m_size &lt; 1U), DEQUE_EXCEPTION_FRONT_NO_ELEM, "sn_deque::front()");
 <span style = "background-color:#dfd">			return (m_p_arr[m_head]);
 		}</span>
 
 		T&amp; back()
-<span style = "background-color:#dfd">		{
-			if (m_size &lt; 1U)</span>
-			{
-<span style = "background-color:#fdd">				tr1::sn_exception::handle(DEQUE_EXCEPTION_BACK_NO_ELEM, "sn_deque::back()");</span>
-			}
+<span style = "background-color:#dfd">		{</span>
+			SN_EXCEPTION_HANDLE((m_size &lt; 1U), DEQUE_EXCEPTION_BACK_NO_ELEM, "sn_deque::back()");
 
 <span style = "background-color:#dfd">			if (0U == m_tail)</span>
 			{
-<span style = "background-color:#dfd">				return m_p_arr[m_index_max];</span>
+<span style = "background-color:#fdd">				return m_p_arr[m_index_max];</span>
 			}
 <span style = "background-color:#fdd">			else</span>
 			{
@@ -260,12 +254,9 @@ namespace sn_std
 <span style = "background-color:#dfd">		}</span>
 
 		T&amp; operator[] (uint32_t idx)
-<span style = "background-color:#dfd">		{
-			if (m_size &lt; 1U)</span>
-			{
-<span style = "background-color:#fdd">				tr1::sn_exception::handle(DEQUE_EXCEPTION_AT_NO_ELEM, "sn_deque::at()");</span>
-			}
-
+<span style = "background-color:#dfd">		{</span>
+            SN_EXCEPTION_HANDLE((m_size &lt; 1U), DEQUE_EXCEPTION_AT_NO_ELEM, "sn_deque::at()");
+            
 <span style = "background-color:#dfd">			if (m_index_max &gt;= m_head + idx)</span>
 			{
 <span style = "background-color:#dfd">				return (m_p_arr[m_head + idx]);</span>
@@ -305,95 +296,75 @@ namespace sn_std
 		// modifiers
 		////////////////////////////////////////
 		void push_front(const T&amp; data)
-<span style = "background-color:#dfd">		{
+<span style = "background-color:#dfd">		{</span>
+            SN_EXCEPTION_HANDLE(full(), DEQUE_EXCEPTION_PUSH_FRONT_OVERFLOW, "sn_deque::push_front()");
+			
+<span style = "background-color:#dfd">			m_head--;
+			if (-1 == m_head)</span>
+			{
+<span style = "background-color:#dfd">				m_head = m_index_max;</span>
+			}
+
+<span style = "background-color:#dfd">			m_p_arr[m_head] = data;</span>
+
+<span style = "background-color:#dfd">			_increment_size();
 			if (full())</span>
 			{
-<span style = "background-color:#fdd">				tr1::sn_exception::handle(DEQUE_EXCEPTION_PUSH_FRONT_OVERFLOW, "sn_deque::push_front()");</span>
-			}
-<span style = "background-color:#fdd">			else</span>
-			{
-<span style = "background-color:#dfd">				m_head--;
-				if (-1 == m_head)</span>
-				{
-<span style = "background-color:#dfd">					m_head = m_index_max;</span>
-				}
-
-<span style = "background-color:#dfd">				m_p_arr[m_head] = data;</span>
-
-<span style = "background-color:#dfd">				_increment_size();
-				if (full())</span>
-				{
-<span style = "background-color:#fdd">					m_tail = m_head;</span>
-				}
+<span style = "background-color:#fdd">				m_tail = m_head;</span>
 			}
 <span style = "background-color:#dfd">		}</span>
 
 		void push_back(const T&amp; data)
-<span style = "background-color:#dfd">		{
-			if (full())</span>
-			{
-<span style = "background-color:#fdd">				tr1::sn_exception::handle(DEQUE_EXCEPTION_PUSH_BACK_OVERFLOW, "sn_deque::push_back()");</span>
-			}
-<span style = "background-color:#fdd">			else</span>
-			{
-<span style = "background-color:#dfd">				m_p_arr[m_tail] = data;</span>
+<span style = "background-color:#dfd">		{</span>
+            SN_EXCEPTION_HANDLE(full(), DEQUE_EXCEPTION_PUSH_BACK_OVERFLOW, "sn_deque::push_back()");
+			
+<span style = "background-color:#dfd">			m_p_arr[m_tail] = data;</span>
 
-<span style = "background-color:#dfd">				_increment_size();
-				++m_tail;
-				if (m_tail &gt; m_index_max)</span>
-				{
-<span style = "background-color:#dfd">					m_tail = 0U;</span>
-				}
-<span style = "background-color:#dfd">				if (full())</span>
-				{
-<span style = "background-color:#fdd">					m_head = m_tail;</span>
-				}
+<span style = "background-color:#dfd">			_increment_size();
+			++m_tail;
+			if (m_tail &gt; m_index_max)</span>
+			{
+<span style = "background-color:#fdd">				m_tail = 0U;</span>
+			}
+<span style = "background-color:#dfd">			if (full())</span>
+			{
+<span style = "background-color:#fdd">				m_head = m_tail;</span>
 			}
 <span style = "background-color:#dfd">		}</span>
 
 		void pop_front()
 		{
-			if (m_size &gt; 0U)
-			{
-				if (m_index_max == m_head)
-				{
-					m_head = 0U;
-				}
-				else
-				{
-					m_head++;
-				}
-				--m_size;
-			}
-			else
-			{
-				tr1::sn_exception::handle(DEQUE_EXCEPTION_POP_FRONT_NO_ELEM, "sn_deque::pop_front()");
-			}
+            SN_EXCEPTION_HANDLE(!(m_size &gt; 0U), DEQUE_EXCEPTION_POP_FRONT_NO_ELEM, "sn_deque::pop_front()");
+
+            if (m_index_max == m_head)
+            {
+                m_head = 0U;
+            }
+            else
+            {
+                m_head++;
+            }
+            --m_size;
 		}
 
 		void pop_back()
 		{
-			if (m_size &gt; 0U)
-			{
-				if (m_tail == 0U)
-				{
-					m_tail = m_index_max;
-				}
-				else
-				{
-					m_tail--;
-				}
-				m_size--;
-			}
-			else
-			{
-				tr1::sn_exception::handle(DEQUE_EXCEPTION_POP_BACK_NO_ELEM, "sn_deque::pop_back()");
-			}
+            SN_EXCEPTION_HANDLE(!(m_size &gt; 0U), DEQUE_EXCEPTION_POP_BACK_NO_ELEM, "sn_deque::pop_back()");
+
+            if (m_tail == 0U)
+            {
+                m_tail = m_index_max;
+            }
+            else
+            {
+                m_tail--;
+            }
+            m_size--;
 		}
 
 		void clear()
 <span style = "background-color:#dfd">		{
-			m_size = 0;
+			_init();
 		}</span>
 
 

@@ -145,16 +145,9 @@ namespace sn_std
 		}</span>
 		
 		T&amp; operator[] (uint32_t idx)
-<span style = "background-color:#dfd">		{
-			if (idx &lt; m_size)</span>
-			{
-<span style = "background-color:#dfd">				return m_p_arr[idx];</span>
-			}
-<span style = "background-color:#fdd">			else</span>
-			{
-<span style = "background-color:#dfd">				tr1::sn_exception::handle(VECTOR_EXCEPTION_AT_INDEX_OUT_OF_RANGE, "sn_vector::at()");</span>
-			}
-<span style = "background-color:#dfd">			return m_p_arr[0U];
+<span style = "background-color:#dfd">		{</span>
+            SN_EXCEPTION_HANDLE((idx &gt;= m_size), VECTOR_EXCEPTION_AT_INDEX_OUT_OF_RANGE, "sn_vector::at()");
+<span style = "background-color:#dfd">            return m_p_arr[idx];
 		}</span>
 
 		T&amp; at(uint32_t idx)
@@ -181,34 +174,22 @@ namespace sn_std
 		{
 			return const_cast&lt;sn_vector&lt;T*&gt;*&gt;(this)-&gt;at(idx);;
 		}
-
+         
 		////////////////////////////////////////
 		// modifiers
 		////////////////////////////////////////
 		void push_back(const T&amp; val)
-<span style = "background-color:#dfd">		{
-			if (m_size &lt; m_capacity)</span>
-			{
-<span style = "background-color:#dfd">				m_p_arr[m_size] = val;
-				++m_size;</span>
-			}
-<span style = "background-color:#dfd">			else</span>
-			{
-<span style = "background-color:#fdd">				tr1::sn_exception::handle(VECTOR_EXCEPTION_PUSH_BACK_OVERFLOW, "sn_vec::push_back()");</span>
-			}
-<span style = "background-color:#dfd">		}</span>
+<span style = "background-color:#dfd">		{</span>
+            SN_EXCEPTION_HANDLE((m_size &gt;= m_capacity), VECTOR_EXCEPTION_PUSH_BACK_OVERFLOW, "sn_vec::push_back()");
+<span style = "background-color:#dfd">            m_p_arr[m_size] = val;
+            ++m_size;
+		}</span>
 
 		void pop_back()
-<span style = "background-color:#dfd">		{
-			if (m_size &gt; 0U)</span>
-			{
-<span style = "background-color:#dfd">				--m_size;</span>
-			}
-<span style = "background-color:#dfd">			else</span>
-			{
-<span style = "background-color:#fdd">				tr1::sn_exception::handle(VECTOR_EXCEPTION_POP_BACK_NO_ELEM, "sn_vec::pop_back()");</span>
-			}
-<span style = "background-color:#dfd">		}</span>
+<span style = "background-color:#dfd">		{</span>
+            SN_EXCEPTION_HANDLE(!(m_size &gt; 0U), VECTOR_EXCEPTION_POP_BACK_NO_ELEM, "sn_vec::pop_back()");
+<span style = "background-color:#dfd">            --m_size;
+		}</span>
 
 		void clear()
 <span style = "background-color:#dfd">		{

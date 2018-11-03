@@ -245,11 +245,7 @@ namespace sn_std
 		////////////////////////////////////////
 		T&amp; front()
 		{
-			if (0U == m_size)
-			{
-				tr1::sn_exception::handle(LIST_EXCEPTION_FRONT_NO_ELEM, "sn_list::front()");
-			}
-
+            SN_EXCEPTION_HANDLE((0U == m_size), LIST_EXCEPTION_FRONT_NO_ELEM, "sn_list::front()");
 			return m_p_head-&gt;element;
 		}
 
@@ -265,11 +261,7 @@ namespace sn_std
 
 		const T&amp; back() const
 		{
-			if (0U == m_size)
-			{
-				tr1::sn_exception::handle(LIST_EXCEPTION_BACK_NO_ELEM, "sn_list::back()");
-			}
-
+            SN_EXCEPTION_HANDLE((0U == m_size), LIST_EXCEPTION_BACK_NO_ELEM, "sn_list::back()");
 			return m_p_tail-&gt;p_prev-&gt;element;
 		}
 
@@ -277,116 +269,96 @@ namespace sn_std
 		// modifiers
 		////////////////////////////////////////
 		void push_front(const T&amp; elem)
-<span style = "background-color:#dfd">		{
-			if (m_size &lt; m_capacity)</span>
-			{
-<span style = "background-color:#dfd">				if (nullptr == m_p_head)</span>
-				{
-<span style = "background-color:#dfd">					push_back(elem);</span>
-				}
-<span style = "background-color:#dfd">				else</span>
-				{
-<span style = "background-color:#dfd">					m_size++;
-					node* p_node = m_p_vec-&gt;back();
-					p_node-&gt;reset();
-					m_p_vec-&gt;pop_back();</span>
+<span style = "background-color:#dfd">		{</span>
+            SN_EXCEPTION_HANDLE((m_size &gt;= m_capacity), LIST_EXCEPTION_PUSH_FRONT_OVERFLOW, "sn_list::push_front()");
+            
+<span style = "background-color:#dfd">            if (nullptr == m_p_head)</span>
+            {
+<span style = "background-color:#dfd">                push_back(elem);</span>
+            }
+<span style = "background-color:#dfd">            else</span>
+            {
+<span style = "background-color:#dfd">                m_size++;
+                node* p_node = m_p_vec-&gt;back();
+                p_node-&gt;reset();
+                m_p_vec-&gt;pop_back();</span>
 
-<span style = "background-color:#dfd">					p_node-&gt;element = elem;</span>
+<span style = "background-color:#dfd">                p_node-&gt;element = elem;</span>
 
-<span style = "background-color:#dfd">					m_p_head-&gt;p_prev = p_node;
-					p_node-&gt;p_next = m_p_head;
-					m_p_head = p_node;</span>
-				}
-			}
-<span style = "background-color:#dfd">			else</span>
-			{
-<span style = "background-color:#fdd">				tr1::sn_exception::handle(LIST_EXCEPTION_PUSH_FRONT_OVERFLOW, "sn_list::push_front()");</span>
-			}
+<span style = "background-color:#dfd">                m_p_head-&gt;p_prev = p_node;
+                p_node-&gt;p_next = m_p_head;
+                m_p_head = p_node;</span>
+            }
 <span style = "background-color:#dfd">		}</span>
 
 		void push_back(const T&amp; elem)
-<span style = "background-color:#dfd">		{
-			if (m_size &lt; m_capacity)</span>
-			{
-<span style = "background-color:#dfd">				m_size++;
-				node* p_node = m_p_vec-&gt;back();
-				p_node-&gt;reset();
-				m_p_vec-&gt;pop_back();</span>
+<span style = "background-color:#dfd">		{</span>
+            SN_EXCEPTION_HANDLE((m_size &gt;= m_capacity), LIST_EXCEPTION_PUSH_BACK_OVERFLOW, "sn_list::push_back()");
 
-<span style = "background-color:#dfd">				p_node-&gt;element = elem;</span>
+<span style = "background-color:#dfd">            m_size++;
+            node* p_node = m_p_vec-&gt;back();
+            p_node-&gt;reset();
+            m_p_vec-&gt;pop_back();</span>
 
-<span style = "background-color:#dfd">				if (nullptr == m_p_head)</span>
-				{
-<span style = "background-color:#dfd">					m_p_head = p_node;
-					m_p_tail = m_p_vec-&gt;back();
-					m_p_vec-&gt;pop_back();</span>
+<span style = "background-color:#dfd">            p_node-&gt;element = elem;</span>
 
-<span style = "background-color:#dfd">					m_p_tail-&gt;reset();</span>
+<span style = "background-color:#dfd">            if (nullptr == m_p_head)</span>
+            {
+<span style = "background-color:#dfd">                m_p_head = p_node;
+                m_p_tail = m_p_vec-&gt;back();
+                m_p_vec-&gt;pop_back();</span>
 
-<span style = "background-color:#dfd">					m_p_head-&gt;p_next = m_p_tail;
-					m_p_tail-&gt;p_prev = m_p_head;</span>
-				}
+<span style = "background-color:#dfd">                m_p_tail-&gt;reset();</span>
 
-<span style = "background-color:#dfd">				else</span>
-				{
-<span style = "background-color:#dfd">					m_p_tail-&gt;p_prev-&gt;p_next = p_node;
-					p_node-&gt;p_prev = m_p_tail-&gt;p_prev;
-					p_node-&gt;p_next = m_p_tail;
-					m_p_tail-&gt;p_prev = p_node;</span>
-				}
-			}
-<span style = "background-color:#dfd">			else</span>
-			{
-<span style = "background-color:#fdd">				tr1::sn_exception::handle(LIST_EXCEPTION_PUSH_BACK_OVERFLOW, "sn_list::push_back()");</span>
-			}
+<span style = "background-color:#dfd">                m_p_head-&gt;p_next = m_p_tail;
+                m_p_tail-&gt;p_prev = m_p_head;</span>
+            }
+
+<span style = "background-color:#dfd">            else</span>
+            {
+<span style = "background-color:#dfd">                m_p_tail-&gt;p_prev-&gt;p_next = p_node;
+                p_node-&gt;p_prev = m_p_tail-&gt;p_prev;
+                p_node-&gt;p_next = m_p_tail;
+                m_p_tail-&gt;p_prev = p_node;</span>
+            }
 <span style = "background-color:#dfd">		}</span>
 
 		void pop_front()
-<span style = "background-color:#dfd">		{
-			if (0U == m_size)</span>
-			{
-<span style = "background-color:#fdd">				tr1::sn_exception::handle(LIST_EXCEPTION_POP_FRONT_NO_ELEM, "sn_list::pop_front()");</span>
-			}
-<span style = "background-color:#fdd">			else</span>
-			{
-<span style = "background-color:#dfd">				if (1U == m_size)</span>
-				{
-<span style = "background-color:#fdd">					m_p_vec-&gt;push_back(m_p_tail);
-					m_p_vec-&gt;push_back(m_p_head);</span>
-				}
-<span style = "background-color:#fdd">				else</span>
-				{
-<span style = "background-color:#dfd">					m_p_vec-&gt;push_back(m_p_head);
-					m_p_head = m_p_head-&gt;p_next;
-					m_p_head-&gt;p_prev = nullptr;</span>
-				}
-<span style = "background-color:#dfd">				--m_size;</span>
-			}
-<span style = "background-color:#dfd">		}</span>
+<span style = "background-color:#dfd">		{</span>
+            SN_EXCEPTION_HANDLE((0U == m_size), LIST_EXCEPTION_POP_FRONT_NO_ELEM, "sn_list::pop_front()");
+
+<span style = "background-color:#dfd">            if (1U == m_size)</span>
+            {
+<span style = "background-color:#fdd">                m_p_vec-&gt;push_back(m_p_tail);
+                m_p_vec-&gt;push_back(m_p_head);</span>
+            }
+<span style = "background-color:#fdd">            else</span>
+            {
+<span style = "background-color:#dfd">                m_p_vec-&gt;push_back(m_p_head);
+                m_p_head = m_p_head-&gt;p_next;
+                m_p_head-&gt;p_prev = nullptr;</span>
+            }
+<span style = "background-color:#dfd">            --m_size;
+		}</span>
 
 		void pop_back()
-<span style = "background-color:#dfd">		{
-			if (0U == m_size)</span>
-			{
-<span style = "background-color:#fdd">				tr1::sn_exception::handle(LIST_EXCEPTION_POP_BACK_NO_ELEM, "sn_list::pop_back()");</span>
-			}
-<span style = "background-color:#fdd">			else</span>
-			{
-<span style = "background-color:#dfd">				if (1U == m_size)</span>
-				{
-<span style = "background-color:#dfd">					m_p_vec-&gt;push_back(m_p_tail);
-					m_p_vec-&gt;push_back(m_p_head);</span>
-				}
-<span style = "background-color:#dfd">				else</span>
-				{
-<span style = "background-color:#dfd">					node* p_last = m_p_tail-&gt;p_prev;
-					p_last-&gt;p_prev-&gt;p_next = m_p_tail;
-					m_p_tail-&gt;p_prev = p_last-&gt;p_prev;
-					m_p_vec-&gt;push_back(p_last);</span>
-				}
-<span style = "background-color:#dfd">				--m_size;</span>
-			}
-<span style = "background-color:#dfd">		}</span>
+<span style = "background-color:#dfd">		{</span>
+            SN_EXCEPTION_HANDLE((0U == m_size), LIST_EXCEPTION_POP_BACK_NO_ELEM, "sn_list::pop_back()");
+
+<span style = "background-color:#dfd">            if (1U == m_size)</span>
+            {
+<span style = "background-color:#dfd">                m_p_vec-&gt;push_back(m_p_tail);
+                m_p_vec-&gt;push_back(m_p_head);</span>
+            }
+<span style = "background-color:#dfd">            else</span>
+            {
+<span style = "background-color:#dfd">                node* p_last = m_p_tail-&gt;p_prev;
+                p_last-&gt;p_prev-&gt;p_next = m_p_tail;
+                m_p_tail-&gt;p_prev = p_last-&gt;p_prev;
+                m_p_vec-&gt;push_back(p_last);</span>
+            }
+<span style = "background-color:#dfd">            --m_size;
+		}</span>
 
 		void clear()
 <span style = "background-color:#dfd">		{

@@ -4,6 +4,7 @@ var NAVTREEINDEX0 =
 ".html":[1,0,1,0],
 "annotated.html":[1,0],
 "class_d_o_c_1_1_r_e_v_i_s_i_o_n___h_i_s_t_o_r_y_1_1_r_v_h__20181027___r_e_v_i_s_i_o_n___h_i_s_t_o_r_y___a_d_d_e_d.html":[0,1,0,0],
+"class_d_o_c_1_1_r_e_v_i_s_i_o_n___h_i_s_t_o_r_y_1_1_r_v_h__20181103___n_o___e_x_c_e_p_t_i_o_n___c_h_e_c_k.html":[0,1,0,1],
 "class_d_o_c_1_1_s_p_e_c_1_1_s01___b_i_z___r_e_q_1_1_b_r__0001___e_a_s_y___t_o___u_n_d_e_r_s_t_a_n_d.html":[0,1,1,0,0],
 "class_d_o_c_1_1_s_p_e_c_1_1_s02___s_r_s_1_1_r01___f_u_n_c_t_i_o_n_a_l_1_1_r_f__0001___s_t_l___i_n_t_e_r_f_a_c_e.html":[0,1,1,1,0,0],
 "class_d_o_c_1_1_s_p_e_c_1_1_s02___s_r_s_1_1_r02___n_o_n___f_u_n_c_t_i_o_n_a_l_1_1_r_n_f__0001___3879f83d6720283e0039b7d65d1a2902.html":[0,1,1,1,1,0],
@@ -214,9 +215,9 @@ var NAVTREEINDEX0 =
 "classsn__std_1_1tr1_1_1sn__bbst_1_1node.html#ad88af98ca2c653f9d9b4c949cb6b1406":[0,0,1,0,0,2,4],
 "classsn__std_1_1tr1_1_1sn__bbst_1_1node.html#ae1f99e9cbcd3df7e4163f49c8c8d384b":[0,0,1,0,0,2,1],
 "classsn__std_1_1tr1_1_1sn__exception.html":[0,0,1,0,1],
-"classsn__std_1_1tr1_1_1sn__exception.html#a3284755f8734bc122c7efb4fb25b0e9e":[0,0,1,0,1,1],
 "classsn__std_1_1tr1_1_1sn__exception.html#a5065e63d42059e5db7e22a4ecf1abcc8":[0,0,1,0,1,0],
 "classsn__std_1_1tr1_1_1sn__exception.html#a85481553f29460857ff4267841ec42bc":[0,0,1,0,1,2],
+"classsn__std_1_1tr1_1_1sn__exception.html#af391209d7ec0616a45736fc328c7f9b7":[0,0,1,0,1,1],
 "classsn__std_1_1tr1_1_1sn__map__deq.html":[0,0,1,0,2],
 "classsn__std_1_1tr1_1_1sn__map__deq.html#a19626e9c43ccfd51801ae431d3ec546f":[0,0,1,0,2,5],
 "classsn__std_1_1tr1_1_1sn__map__deq.html#a2debecb115f4a6d2a00d88fa727ec537":[0,0,1,0,2,6],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classsn__std_1_1tr1_1_1sn__map__vec.html#a83bc75869afd220c8bc6e54b1943bf1a":[0,0,1,0,3,3],
 "classsn__std_1_1tr1_1_1sn__map__vec.html#a8cd08f402f6cc40ba1856d0cff34ad5e":[0,0,1,0,3,9],
 "classsn__std_1_1tr1_1_1sn__map__vec.html#a9a87c3015b798a7d12ccb8897d9be9f4":[0,0,1,0,3,5],
-"classsn__std_1_1tr1_1_1sn__map__vec.html#aa24593efe27cb59aac2d5d53f17827b0":[0,0,1,0,3,12],
-"classsn__std_1_1tr1_1_1sn__map__vec.html#ab6ab3ec7adc7ca6d79fd4be072cbf745":[0,0,1,0,3,10]
+"classsn__std_1_1tr1_1_1sn__map__vec.html#aa24593efe27cb59aac2d5d53f17827b0":[0,0,1,0,3,12]
 };

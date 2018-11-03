@@ -166,9 +166,10 @@ namespace sn_std
 <span style = "background-color:#dfd">							tmp = (*m_p_deq)[i];
 							(*m_p_deq)[i] = (*m_p_deq)[i + 1U];
 							(*m_p_deq)[i + 1U] = tmp;
-						}</span>
+						}
+						return sn_pair&lt;iterator, bool&gt;(iterator(idx, m_p_deq), true);</span>
 					}
-<span style = "background-color:#dfd">					else</span>
+<span style = "background-color:#fdd">					else</span>
 					{
 <span style = "background-color:#dfd">						m_p_deq-&gt;push_back(sn_pair&lt;key_t, val_t&gt;(key, val));
 						for (uint32_t i = (m_p_deq-&gt;size() - 1U);
@@ -183,13 +184,13 @@ namespace sn_std
 						return sn_pair&lt;iterator, bool&gt;(iterator(idx, m_p_deq), true);</span>
 					}
 				}
-<span style = "background-color:#dfd">				else</span>
+<span style = "background-color:#fdd">				else</span>
 				{
 <span style = "background-color:#dfd">					return sn_pair&lt;iterator, bool&gt;(iterator(idx, m_p_deq), false);</span>
 				}
 
-<span style = "background-color:#dfd">				return sn_pair&lt;iterator, bool&gt;(m_p_deq-&gt;end(), false);
-			}</span>
+<span style = "background-color:#fdd">				return sn_pair&lt;iterator, bool&gt;(m_p_deq-&gt;end(), false);</span>
+<span style = "background-color:#dfd">			}</span>
 
 
 			uint32_t erase(const key_t&amp; keyval)
